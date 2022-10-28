@@ -8,6 +8,10 @@
     "json",
     "expressions"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdiamond/jsonexpr.git"
+  },
   "main": "./dist/jsonexpr.js",
   "types": "./dist/jsonexpr.d.ts",
   "files": [
