@@ -10,6 +10,9 @@
   ],
   "main": "./dist/jsonexpr.js",
   "types": "./dist/jsonexpr.d.ts",
+  "files": [
+    "dist/jsonexpr.*"
+  ],
   "scripts": {
     "test": "ts-node test.ts",
     "test:pretty": "npm run test | faucet",
