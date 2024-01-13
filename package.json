@@ -1,6 +1,6 @@
 {
   "name": "@jdiamond/jsonexpr",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "JSON with expressions",
   "license": "MIT",
   "author": "Jason Diamond",
