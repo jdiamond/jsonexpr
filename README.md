@@ -23,8 +23,19 @@ This library does not parse JSON strings. Use `JSON.parse()` or JSON5 or Hjson o
 The `evaluateExpression` function looks like this:
 
 ```ts
-function evaluateExpression(expr: unknown, ctx?: unknown): unknown;
+function evaluateExpression(
+  expr: unknown,
+  ctx?: unknown,
+  params?: string[],
+  args?: unknown[]
+): unknown;
 ```
+
+`ctx` can be accessed via the `this` keyword. If you don't need to do that and only want to acess arguments via their parameter names, you can pass in `null` or `undefined` here.
+
+`params` is the array of names the expression uses to access arguments. You can use curly braces to destructure objects just like in normal JavaScript.
+
+`args` are the actual values the expression will read from.
 
 If you are using TypeScript, you probably want to use something like Zod to parse the output for a type-safe result:
 
@@ -146,6 +157,52 @@ assert.deepEqual(
       a: 1,
       b: 2,
     }
+  ),
+  {
+    result: 3,
+  }
+);
+```
+
+Parameters/arguments:
+
+```js
+assert.deepEqual(
+  evaluateExpression(
+    {
+      result: "{input.a + input.b}",
+    },
+    null,
+    ["input"],
+    [
+      {
+        a: 1,
+        b: 2,
+      },
+    ]
+  ),
+  {
+    result: 3,
+  }
+);
+```
+
+Destructued parameters/arguments:
+
+```js
+assert.deepEqual(
+  evaluateExpression(
+    {
+      result: "{a + b}",
+    },
+    null,
+    ["{a, b}"],
+    [
+      {
+        a: 1,
+        b: 2,
+      },
+    ]
   ),
   {
     result: 3,

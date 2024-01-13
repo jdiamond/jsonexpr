@@ -20,6 +20,17 @@ test("expressions can access properties in context", () => {
   assert.deepEqual(evaluateExpression("{this.a + this.b}", { a: 1, b: 2 }), 3);
 });
 
+test("expressions can use parameter names to access arguments", () => {
+  assert.deepEqual(evaluateExpression("{a + b}", null, ["a", "b"], [1, 2]), 3);
+});
+
+test("parameters can destructure objects", () => {
+  assert.deepEqual(
+    evaluateExpression("{a + b}", null, ["{a, b}"], [{ a: 1, b: 2 }]),
+    3
+  );
+});
+
 test("when expressions are arrays, evaluates each item", () => {
   assert.deepEqual(evaluateExpression(["abc", 123, "{1 + 2}"]), [
     "abc",
