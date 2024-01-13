@@ -7,13 +7,13 @@ Simple support for dynamic expressions in JSON.
 Install:
 
 ```sh
-npm install jsonexpr
+npm install @jdiamond/jsonexpr
 ```
 
 Import:
 
 ```js
-import { evaluateExpression } from "jsonexpr";
+import { evaluateExpression } from "@jdiamond/jsonexpr";
 ```
 
 All input _must_ be trusted!
@@ -29,7 +29,7 @@ function evaluateExpression(expr: unknown, ctx?: unknown): unknown;
 If you are using TypeScript, you probably want to use something like Zod to parse the output for a type-safe result:
 
 ```js
-import { evaluateExpression } from "jsonexpr";
+import { evaluateExpression } from "@jdiamond/jsonexpr";
 import { getStringFromSomewhere, SomeZodSchema } from "./your-job";
 
 const string = getStringFromSomewhere();
